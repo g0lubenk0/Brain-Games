@@ -40,14 +40,14 @@ public class Engine {
                 System.out.println("Correct!");
                 correct += 1;
             } else {
-                if (game.equals("Even")) {
+                System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'%n", answer, result);
+                System.out.println("Let's try again, " + username + "!");
+                failure = true;
+                break;
+/*                if (game.equals("Even")) {
                     correct = 0;
-                } else {
-                    System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'%n", answer, result);
-                    System.out.println("Let's try again, " + username + "!");
-                    failure = true;
-                    break;
-                }
+                } else {*/
+                /*}*/
             }
         }
         if (!failure) {
