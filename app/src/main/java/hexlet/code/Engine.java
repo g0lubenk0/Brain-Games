@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Engine {
@@ -67,6 +68,15 @@ public class Engine {
                 num2 = getRandomNumber(1, 200);
                 question = num1 + " " + num2;
                 result = Integer.toString(getGCD(num1, num2));
+                break;
+            case "Progression":
+                String[] progression = new String[getRandomNumber(5, 11)];
+                int missingIndex = getRandomNumber(0, progression.length);
+                int start = getRandomNumber(1, 100);
+                int step = getRandomNumber(1, 5);
+                fillProgression(progression, start, step);
+                result = hideElementAtIndex(progression, missingIndex);
+                question = formProgressionString(progression);
         }
         return new String[]{question, result};
     }
@@ -104,5 +114,31 @@ public class Engine {
             lesser -= 1;
         }
         return 1;
+    }
+
+    public static void fillProgression(String[] progression, int start, int step) {
+        for (var i = 0; i < progression.length; i += 1) {
+            progression[i] = Integer.toString(start);
+            start += step;
+        }
+    }
+
+    public static String hideElementAtIndex(String[] arr, int index) {
+        String hidden = "";
+        for (var i = 0; i < arr.length; i += 1) {
+            if (i == index) {
+                hidden = arr[i];
+                arr[i] = "..";
+            }
+        }
+        return hidden;
+    }
+
+    public static String formProgressionString(String[] progression) {
+        StringBuilder res = new StringBuilder();
+        for (var element: progression) {
+            res.append(element).append(" ");
+        }
+        return res.toString();
     }
 }
