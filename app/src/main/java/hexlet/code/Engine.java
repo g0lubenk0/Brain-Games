@@ -28,9 +28,10 @@ public class Engine {
     public static void playGame(String game, String username) {
         printDescription(game);
         int correct = 0;
+        int correctCount = 3;
         Scanner scanner = new Scanner(System.in);
         boolean failure = false;
-        while (correct < 3) {
+        while (correct < correctCount) {
             String[] calc = calculateQuestionResult(game);
             System.out.println("Question: " + calc[0]);
             System.out.print("Answer: ");
@@ -104,7 +105,8 @@ public class Engine {
         return (int) (Math.random() * stop) + start;
     }
     public static String getRandomOperation() {
-        String operation = Integer.toString((int) (Math.random() * 4) + 1);
+        int count = 4;
+        String operation = Integer.toString((int) (Math.random() * count) + 1);
 
         return switch (operation) {
             case "2" -> "-";
