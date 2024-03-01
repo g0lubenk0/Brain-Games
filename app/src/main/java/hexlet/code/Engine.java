@@ -84,6 +84,7 @@ public class Engine {
             case "Progression":
                 int arrLengthMax = 10;
                 int arrLengthMin = 5;
+                start = 0;
                 String[] progression = new String[getRandomNumber(arrLengthMin, arrLengthMax)];
                 int missingIndex = getRandomNumber(start, progression.length);
                 int first = getRandomNumber(start, stop);
