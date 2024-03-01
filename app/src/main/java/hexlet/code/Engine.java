@@ -1,17 +1,18 @@
 package hexlet.code;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Engine {
 
     public static void printDescription(String game) {
-        switch(game) {
+        switch (game) {
             case "Even":
                 System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
                 break;
             case "Calc":
                 System.out.println("What is the result of the expression?");
+                break;
+            default:
                 break;
         }
     }
@@ -21,7 +22,7 @@ public class Engine {
         Scanner scanner = new Scanner(System.in);
         boolean failure = false;
         while (correct < 3) {
-            String[] calc = QuestionCalculation(game);
+            String[] calc = calculateQuestionResult(game);
             System.out.println("Question: " + calc[0]);
             System.out.print("Answer: ");
             String answer = scanner.next();
@@ -45,13 +46,13 @@ public class Engine {
         }
     }
 
-    public static String[] QuestionCalculation(String game) {
+    public static String[] calculateQuestionResult(String game) {
         String question = "";
         String result = "";
-        int num1 = 0;
-        int num2 = 0;
+        int num1;
+        int num2;
 
-        switch(game) {
+        switch (game) {
             case "Even":
                 question = Integer.toString(getRandomNumber(1, 100));
                 result = isEven(Integer.parseInt(question));
@@ -60,7 +61,7 @@ public class Engine {
                 num1 = getRandomNumber(1, 20);
                 num2 = getRandomNumber(1, 20);
                 String operation = getRandomOperation();
-                question = num1 + operation + num2;
+                question = num1 + " " + operation + " " + num2;
                 result = Integer.toString(calculateResult(num1, num2, operation));
                 break;
             case "GCD":
@@ -83,15 +84,17 @@ public class Engine {
                 question = Integer.toString(num1);
                 result = isPrime(num1);
                 break;
+            default:
+                break;
         }
         return new String[]{question, result};
     }
 
     public static int getRandomNumber(int start, int stop) {
-        return (int)(Math.random() * stop) + start;
+        return (int) (Math.random() * stop) + start;
     }
     public static String getRandomOperation() {
-        int operation = (int)(Math.random() * 4) + 1;
+        int operation = (int) (Math.random() * 4) + 1;
 
         return switch (operation) {
             case 2 -> "-";
@@ -113,7 +116,7 @@ public class Engine {
 
     public static int getGCD(int num1, int num2) {
         int lesser = Math.min(num1, num2);
-        while(lesser > 1) {
+        while (lesser > 1) {
             if (num1 % lesser == 0 && num2 % lesser == 0) {
                 return lesser;
             }
@@ -150,7 +153,7 @@ public class Engine {
 
     public static String isPrime(int number) {
         int count = 0;
-        for (var i = 1; i < number / 2; i ++) {
+        for (var i = 1; i < number / 2; i++) {
             if (number % i == 0) {
                 count += 1;
             }
