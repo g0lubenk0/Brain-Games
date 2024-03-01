@@ -21,23 +21,23 @@ public class App {
                 0 - Exit""");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Your choice: ");
-        int gameNumber = Integer.parseInt(scanner.next());
+        String gameNumber = scanner.next();
         System.out.println();
         String username = Cli.sayHello();
         switch (gameNumber) {
-            case 2:
+            case "2":
                 Even.play(username);
                 break;
-            case 3:
+            case "3":
                 Calc.play(username);
                 break;
-            case 4:
+            case "4":
                 Gcd.play(username);
                 break;
-            case 5:
+            case "5":
                 Progression.play(username);
                 break;
-            case 6:
+            case "6":
                 Prime.play(username);
                 break;
             default:

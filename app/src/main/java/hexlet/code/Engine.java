@@ -12,7 +12,7 @@ public class Engine {
             case "Calc":
                 System.out.println("What is the result of the expression?");
                 break;
-            case "Gcd":
+            case "GCD":
                 System.out.println("Find the greatest common divisor of given numbers.");
                 break;
             case "Progression":
@@ -28,9 +28,10 @@ public class Engine {
     public static void playGame(String game, String username) {
         printDescription(game);
         int correct = 0;
+        final int correctCount = 3;
         Scanner scanner = new Scanner(System.in);
         boolean failure = false;
-        while (correct < 3) {
+        while (correct < correctCount) {
             String[] calc = calculateQuestionResult(game);
             System.out.println("Question: " + calc[0]);
             System.out.print("Answer: ");
@@ -40,14 +41,10 @@ public class Engine {
                 System.out.println("Correct!");
                 correct += 1;
             } else {
-                if (game.equals("Even")) {
-                    correct = 0;
-                } else {
-                    System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'%n", answer, result);
-                    System.out.println("Let's try again, " + username + "!");
-                    failure = true;
-                    break;
-                }
+                System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'%n", answer, result);
+                System.out.println("Let's try again, " + username + "!");
+                failure = true;
+                break;
             }
         }
         if (!failure) {
@@ -60,36 +57,41 @@ public class Engine {
         String result = "";
         int num1;
         int num2;
+        int start = 1;
+        final int stop = 100;
 
         switch (game) {
             case "Even":
-                question = Integer.toString(getRandomNumber(1, 100));
+                question = Integer.toString(getRandomNumber(start, stop));
                 result = isEven(Integer.parseInt(question));
                 break;
             case "Calc":
-                num1 = getRandomNumber(1, 20);
-                num2 = getRandomNumber(1, 20);
+                num1 = getRandomNumber(start, stop);
+                num2 = getRandomNumber(start, stop);
                 String operation = getRandomOperation();
                 question = num1 + " " + operation + " " + num2;
                 result = Integer.toString(calculateResult(num1, num2, operation));
                 break;
             case "GCD":
-                num1 = getRandomNumber(1, 200);
-                num2 = getRandomNumber(1, 200);
+                num1 = getRandomNumber(start, stop);
+                num2 = getRandomNumber(start, stop);
                 question = num1 + " " + num2;
                 result = Integer.toString(getGCD(num1, num2));
                 break;
             case "Progression":
-                String[] progression = new String[getRandomNumber(5, 11)];
-                int missingIndex = getRandomNumber(0, progression.length);
-                int start = getRandomNumber(1, 100);
-                int step = getRandomNumber(1, 5);
-                fillProgression(progression, start, step);
+                final int arrLengthMax = 10;
+                final int arrLengthMin = 5;
+                start = 0;
+                String[] progression = new String[getRandomNumber(arrLengthMin, arrLengthMax)];
+                int missingIndex = getRandomNumber(start, progression.length);
+                int first = getRandomNumber(start, stop);
+                int step = getRandomNumber(start, stop);
+                fillProgression(progression, first, step);
                 result = hideElementAtIndex(progression, missingIndex);
                 question = formProgressionString(progression);
                 break;
             case "Prime":
-                num1 = getRandomNumber(1, 100);
+                num1 = getRandomNumber(start, stop);
                 question = Integer.toString(num1);
                 result = isPrime(num1);
                 break;
@@ -103,11 +105,12 @@ public class Engine {
         return (int) (Math.random() * stop) + start;
     }
     public static String getRandomOperation() {
-        int operation = (int) (Math.random() * 4) + 1;
+        final int count = 4;
+        String operation = Integer.toString((int) (Math.random() * count) + 1);
 
         return switch (operation) {
-            case 2 -> "-";
-            case 3 -> "*";
+            case "2" -> "-";
+            case "3" -> "*";
             default -> "+";
         };
     }
@@ -162,7 +165,7 @@ public class Engine {
 
     public static String isPrime(int number) {
         int count = 0;
-        for (var i = 1; i < number / 2; i++) {
+        for (var i = 1; i < number / 2 + 1; i++) {
             if (number % i == 0) {
                 count += 1;
             }
