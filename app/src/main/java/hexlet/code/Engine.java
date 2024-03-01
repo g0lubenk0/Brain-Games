@@ -25,7 +25,7 @@ public class Engine {
             String[] calc = calculateQuestionResult(game);
             System.out.println("Question: " + calc[0]);
             System.out.print("Answer: ");
-            String answer = scanner.next();
+            String answer = scanner.nextLine();
             String result = calc[1];
             if (answer.equals(result)) {
                 System.out.println("Correct!");
