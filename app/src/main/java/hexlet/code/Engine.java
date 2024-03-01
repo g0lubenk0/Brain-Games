@@ -60,36 +60,40 @@ public class Engine {
         String result = "";
         int num1;
         int num2;
+        int start = 1;
+        int stop = 100;
 
         switch (game) {
             case "Even":
-                question = Integer.toString(getRandomNumber(1, 100));
+                question = Integer.toString(getRandomNumber(start, stop));
                 result = isEven(Integer.parseInt(question));
                 break;
             case "Calc":
-                num1 = getRandomNumber(1, 20);
-                num2 = getRandomNumber(1, 20);
+                num1 = getRandomNumber(start, stop);
+                num2 = getRandomNumber(start, stop);
                 String operation = getRandomOperation();
                 question = num1 + " " + operation + " " + num2;
                 result = Integer.toString(calculateResult(num1, num2, operation));
                 break;
             case "GCD":
-                num1 = getRandomNumber(1, 200);
-                num2 = getRandomNumber(1, 200);
+                num1 = getRandomNumber(start, stop);
+                num2 = getRandomNumber(start, stop);
                 question = num1 + " " + num2;
                 result = Integer.toString(getGCD(num1, num2));
                 break;
             case "Progression":
-                String[] progression = new String[getRandomNumber(5, 11)];
-                int missingIndex = getRandomNumber(0, progression.length);
-                int start = getRandomNumber(1, 100);
-                int step = getRandomNumber(1, 5);
-                fillProgression(progression, start, step);
+                int arrLengthMax = 10;
+                int arrLengthMin = 5;
+                String[] progression = new String[getRandomNumber(arrLengthMin, arrLengthMax)];
+                int missingIndex = getRandomNumber(start, progression.length);
+                int first = getRandomNumber(start, stop);
+                int step = getRandomNumber(start, stop);
+                fillProgression(progression, first, step);
                 result = hideElementAtIndex(progression, missingIndex);
                 question = formProgressionString(progression);
                 break;
             case "Prime":
-                num1 = getRandomNumber(1, 100);
+                num1 = getRandomNumber(start, stop);
                 question = Integer.toString(num1);
                 result = isPrime(num1);
                 break;
@@ -103,11 +107,11 @@ public class Engine {
         return (int) (Math.random() * stop) + start;
     }
     public static String getRandomOperation() {
-        int operation = (int) (Math.random() * 4) + 1;
+        String operation = Integer.toString((int) (Math.random() * 4) + 1);
 
         return switch (operation) {
-            case 2 -> "-";
-            case 3 -> "*";
+            case "2" -> "-";
+            case "3" -> "*";
             default -> "+";
         };
     }
