@@ -18,6 +18,7 @@ public class Engine {
         printDescription(game);
         int correct = 0;
         Scanner scanner = new Scanner(System.in);
+        boolean failure = false;
         while (correct < 3) {
             String[] calc = QuestionCalculation(game);
             System.out.println("Question: " + calc[0]);
@@ -33,27 +34,39 @@ public class Engine {
                 } else {
                     System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'%n", answer, result);
                     System.out.println("Let's try again, " + username + "!");
+                    failure = true;
+                    break;
                 }
             }
         }
-        System.out.println("Congratulations, " + username + "!");
+        if (!failure) {
+            System.out.println("Congratulations, " + username + "!");
+        }
     }
 
     public static String[] QuestionCalculation(String game) {
         String question = "";
         String result = "";
+        int num1 = 0;
+        int num2 = 0;
+
         switch(game) {
             case "Even":
                 question = Integer.toString(getRandomNumber(1, 100));
                 result = isEven(Integer.parseInt(question));
                 break;
             case "Calc":
-                int num1 = getRandomNumber(1, 20);
-                int num2 = getRandomNumber(1, 20);
+                num1 = getRandomNumber(1, 20);
+                num2 = getRandomNumber(1, 20);
                 String operation = getRandomOperation();
                 question = num1 + operation + num2;
                 result = Integer.toString(calculateResult(num1, num2, operation));
                 break;
+            case "GCD":
+                num1 = getRandomNumber(1, 200);
+                num2 = getRandomNumber(1, 200);
+                question = num1 + " " + num2;
+                result = Integer.toString(getGCD(num1, num2));
         }
         return new String[]{question, result};
     }
@@ -80,5 +93,16 @@ public class Engine {
 
     public static String isEven(int number) {
         return number % 2 == 0 ? "yes" : "no";
+    }
+
+    public static int getGCD(int num1, int num2) {
+        int lesser = Math.min(num1, num2);
+        while(lesser > 1) {
+            if (num1 % lesser == 0 && num2 % lesser == 0) {
+                return lesser;
+            }
+            lesser -= 1;
+        }
+        return 1;
     }
 }
