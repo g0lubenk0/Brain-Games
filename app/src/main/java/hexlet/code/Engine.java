@@ -44,10 +44,6 @@ public class Engine {
                 System.out.println("Let's try again, " + username + "!");
                 failure = true;
                 break;
-/*                if (game.equals("Even")) {
-                    correct = 0;
-                } else {*/
-                /*}*/
             }
         }
         if (!failure) {
@@ -167,7 +163,7 @@ public class Engine {
 
     public static String isPrime(int number) {
         int count = 0;
-        for (var i = 1; i < number / 2; i++) {
+        for (var i = 1; i < number / 2 + 1; i++) {
             if (number % i == 0) {
                 count += 1;
             }
