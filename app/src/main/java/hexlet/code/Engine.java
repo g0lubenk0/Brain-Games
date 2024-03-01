@@ -28,7 +28,7 @@ public class Engine {
     public static void playGame(String game, String username) {
         printDescription(game);
         int correct = 0;
-        int correctCount = 3;
+        final int correctCount = 3;
         Scanner scanner = new Scanner(System.in);
         boolean failure = false;
         while (correct < correctCount) {
@@ -58,7 +58,7 @@ public class Engine {
         int num1;
         int num2;
         int start = 1;
-        int stop = 100;
+        final int stop = 100;
 
         switch (game) {
             case "Even":
@@ -79,8 +79,8 @@ public class Engine {
                 result = Integer.toString(getGCD(num1, num2));
                 break;
             case "Progression":
-                int arrLengthMax = 10;
-                int arrLengthMin = 5;
+                final int arrLengthMax = 10;
+                final int arrLengthMin = 5;
                 start = 0;
                 String[] progression = new String[getRandomNumber(arrLengthMin, arrLengthMax)];
                 int missingIndex = getRandomNumber(start, progression.length);
@@ -105,7 +105,7 @@ public class Engine {
         return (int) (Math.random() * stop) + start;
     }
     public static String getRandomOperation() {
-        int count = 4;
+        final int count = 4;
         String operation = Integer.toString((int) (Math.random() * count) + 1);
 
         return switch (operation) {
