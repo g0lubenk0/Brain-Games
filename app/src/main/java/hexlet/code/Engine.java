@@ -12,6 +12,15 @@ public class Engine {
             case "Calc":
                 System.out.println("What is the result of the expression?");
                 break;
+            case "Gcd":
+                System.out.println("Find the greatest common divisor of given numbers.");
+                break;
+            case "Progression":
+                System.out.println("What number is missing in the progression?");
+                break;
+            case "Prime":
+                System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
+                break;
             default:
                 break;
         }
