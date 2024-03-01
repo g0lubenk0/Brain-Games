@@ -12,7 +12,7 @@ public class Engine {
             case "Calc":
                 System.out.println("What is the result of the expression?");
                 break;
-            case "Gcd":
+            case "GCD":
                 System.out.println("Find the greatest common divisor of given numbers.");
                 break;
             case "Progression":
