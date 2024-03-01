@@ -77,6 +77,12 @@ public class Engine {
                 fillProgression(progression, start, step);
                 result = hideElementAtIndex(progression, missingIndex);
                 question = formProgressionString(progression);
+                break;
+            case "Prime":
+                num1 = getRandomNumber(1, 100);
+                question = Integer.toString(num1);
+                result = isPrime(num1);
+                break;
         }
         return new String[]{question, result};
     }
@@ -140,5 +146,15 @@ public class Engine {
             res.append(element).append(" ");
         }
         return res.toString();
+    }
+
+    public static String isPrime(int number) {
+        int count = 0;
+        for (var i = 1; i < number / 2; i ++) {
+            if (number % i == 0) {
+                count += 1;
+            }
+        }
+        return number != 1 && number != 0 && count < 2 ? "yes" : "no";
     }
 }
